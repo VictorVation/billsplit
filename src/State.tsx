@@ -1,6 +1,7 @@
 import React, { useReducer, createContext } from "react";
 import { Action } from "./Actions";
 import reducer from "./Reducers";
+import { number } from "prop-types";
 
 export type Person = {
   shares: Array<number>;
@@ -14,12 +15,15 @@ export type TotalsState = {
   grandtotal: number;
 };
 
-export type ResultState = {};
+export type ResultState = {
+  splits: Array<number>;
+  tip: number;
+};
 
 export type AppState = {
   people: PeopleState;
   totals: TotalsState;
-  result: ResultState;
+  result: null | ResultState;
 };
 
 export const DispatchContext = React.createContext((action: Action) => {});
@@ -39,7 +43,7 @@ export const initialState: AppState = {
     subtotal: 0,
     grandtotal: 0
   },
-  result: {}
+  result: null
 };
 
 export function DispatchContextProvider(props) {

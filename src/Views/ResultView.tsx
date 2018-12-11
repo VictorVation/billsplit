@@ -1,23 +1,41 @@
 import React, { useContext } from "react";
+import { ResultActions } from "../Actions";
 import { DispatchContext, ResultState } from "../State";
 import { default as cx } from "classnames";
 
 interface IResultViewProps {
-  result: ResultState;
+  result: ResultState | null;
 }
 
-export default function PeopleView(props: IResultViewProps) {
+export default function ResultView(props: IResultViewProps) {
   const dispatch = useContext(DispatchContext);
 
   return (
     <>
-      <h4>Results</h4>
-      <table>
-        <tbody>
-          <td>Hey</td>
-          <td>Hey</td>
-        </tbody>
-      </table>
+      <button
+        className={cx("background-blue")}
+        onClick={() => dispatch({ type: ResultActions.CALCULATE_RESULT })}
+      >
+        Calculate
+      </button>
+      {props.result && (
+        <>
+          <hr />
+          <h4>Results</h4>
+
+          {props.result.splits.map((split, idx) => (
+            <div className="row" key={idx}>
+              <div className="col">Person {idx}</div>
+              <div className="col">
+                {new Intl.NumberFormat("en-US", {
+                  style: "currency",
+                  currency: "USD"
+                }).format(split)}
+              </div>
+            </div>
+          ))}
+        </>
+      )}
     </>
   );
 }

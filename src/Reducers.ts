@@ -1,5 +1,12 @@
-import { AppState, PeopleState, TotalsState } from "./State";
-import { PeopleActions, TotalsActions, PersonActions, Action } from "./Actions";
+import { AppState, PeopleState, TotalsState, ResultState } from "./State";
+import {
+  PeopleActions,
+  TotalsActions,
+  PersonActions,
+  ResultActions,
+  Action
+} from "./Actions";
+import Swal from "sweetalert2";
 
 function peopleReducer(state: AppState, action: Action): PeopleState {
   switch (action.type) {
@@ -25,27 +32,26 @@ function peopleReducer(state: AppState, action: Action): PeopleState {
 }
 
 function personReducer(state: PeopleState, action: Action): PeopleState {
-  if (action.payload == null) {
-    return state;
-  }
   switch (action.type) {
     case PersonActions.INCREMENT_SHARES: {
-      if (state[action.payload].shares.length === 9) {
-        return state;
-      }
       return state.map((item, idx) => {
-        if (idx === action.payload) {
-          return { ...item, shares: [...item.shares, 0] };
+        if (
+          action.payload != null &&
+          action.payload.index != null &&
+          idx === action.payload.index
+        ) {
+          return { ...item, shares: item.shares.concat([0]) };
         }
         return item;
       });
     }
     case PersonActions.DECREMENT_SHARES: {
-      if (state[action.payload].shares.length === 1) {
-        return state;
-      }
       return state.map((item, idx) => {
-        if (idx === action.payload) {
+        if (
+          action.payload != null &&
+          action.payload.index != null &&
+          idx === action.payload.index
+        ) {
           return { ...item, shares: item.shares.slice(0, -1) };
         }
         return item;
@@ -53,10 +59,18 @@ function personReducer(state: PeopleState, action: Action): PeopleState {
     }
     case PersonActions.CHANGE_SHARE_VALUE: {
       return state.map((item, idx) => {
-        if (idx === action.payload) {
+        if (
+          action.payload != null &&
+          action.payload.shareIndex != null &&
+          action.payload.value != null &&
+          idx === action.payload.index
+        ) {
+          const newShares = item.shares;
+          newShares[action.payload.shareIndex] = action.payload.value;
           return {
             ...item,
-            personTotal: item.shares.reduce((acc, val) => acc + val)
+            shares: newShares,
+            personTotal: newShares.reduce((acc, val) => acc + val)
           };
         }
         return item;
@@ -73,10 +87,10 @@ function totalsReducer(state: AppState, action: Action): TotalsState {
   }
   switch (action.type) {
     case TotalsActions.SET_SUBTOTAL: {
-      return { ...state.totals, subtotal: action.payload };
+      return { ...state.totals, subtotal: action.payload.value || 0 };
     }
     case TotalsActions.SET_GRAND_TOTAL: {
-      return { ...state.totals, grandtotal: action.payload };
+      return { ...state.totals, grandtotal: action.payload.value || 0 };
     }
     default: {
       return state.totals;
@@ -84,19 +98,52 @@ function totalsReducer(state: AppState, action: Action): TotalsState {
   }
 }
 
-function resultReducer(state: AppState, action: Action): TotalsState {
-  if (action.payload == null) {
-    return state.totals;
-  }
+function resultReducer(state: AppState, action: Action): ResultState | null {
   switch (action.type) {
-    case TotalsActions.SET_SUBTOTAL: {
-      return { ...state.totals, subtotal: action.payload };
-    }
-    case TotalsActions.SET_GRAND_TOTAL: {
-      return { ...state.totals, grandtotal: action.payload };
+    case ResultActions.CALCULATE_RESULT: {
+      let personTotal = 0;
+      const splits = state.people.map((person, idx) => {
+        personTotal += person.personTotal;
+        return (
+          (person.personTotal / state.totals.subtotal) * state.totals.grandtotal
+        );
+      });
+
+      if (state.totals.subtotal === 0) {
+        Swal({
+          text: "Enter a Subtotal!",
+          confirmButtonColor: "#70d6ff"
+        });
+        return state.result;
+      }
+      if (state.totals.grandtotal === 0) {
+        Swal({
+          text: "Enter a Grand Total!",
+          confirmButtonColor: "#70d6ff"
+        });
+        return state.result;
+      }
+      if (personTotal != state.totals.subtotal) {
+        Swal({
+          text: "Items don't add up to subtotal!",
+          confirmButtonColor: "#70d6ff"
+        });
+        return state.result;
+      }
+      if (splits.reduce((acc, val) => acc + val) != state.totals.grandtotal) {
+        Swal({
+          text: "Grand Total incorrect!",
+          confirmButtonColor: "#70d6ff"
+        });
+        return state.result;
+      }
+      return {
+        splits,
+        tip: state.totals.grandtotal / state.totals.subtotal - 1
+      };
     }
     default: {
-      return state.totals;
+      return state.result;
     }
   }
 }

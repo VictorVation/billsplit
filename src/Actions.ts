@@ -14,11 +14,15 @@ export enum TotalsActions {
   SET_GRAND_TOTAL = "grandtotal.set"
 }
 
-export enum ResultsActions {
+export enum ResultActions {
   CALCULATE_RESULT = "result.calc"
 }
 
 export type Action = {
-  type: PeopleActions | TotalsActions | PersonActions | ResultsActions;
-  payload?: number;
+  type: PeopleActions | TotalsActions | PersonActions | ResultActions;
+  payload?: {
+    index?: number;
+    shareIndex?: number;
+    value?: number;
+  };
 };

@@ -1,28 +1,27 @@
 import React, { useState } from "react";
-import { Person } from "../State";
 import { default as CurrencyInputImpl } from "react-currency-input";
 
 interface ICurrencyInputProps {
   onChangeEvent: (number) => void;
   value: number;
   name?: string;
+  id?: string;
 }
 
 export default function CurrencyInput(props: ICurrencyInputProps) {
-  const { name, value } = props;
-  const [val, setVal] = useState(value);
+  const { id, name, value } = props;
 
   return (
     <div className="col">
       <CurrencyInputImpl
         selectAllOnFocus={true}
         className="col"
-        onChangeEvent={(event, maskVal, floatVal) => {
-          console.log(event, maskVal, floatVal);
-        }}
+        onChangeEvent={(_, __, floatVal) => props.onChangeEvent(floatVal)}
         prefix={"$"}
-        value={val}
+        value={value}
         name={name ? name : undefined}
+        id={id ? id : undefined}
+        max={3000}
       />
     </div>
   );

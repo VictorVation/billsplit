@@ -12,28 +12,38 @@ export default function TotalsView(props: TotalsState) {
     <>
       <div className={cx("row")}>
         <div className={cx("col")}>
-          <label htmlFor="subtotal">Subtotal</label>
+          <label htmlFor="subtotal">
+            Subtotal <abbr title="Sum of the prices of all items">[?]</abbr>
+          </label>
           <CurrencyInput
-            onChangeEvent={event => {
-              dispatch({ type: TotalsActions.SET_SUBTOTAL, payload: event });
+            onChangeEvent={value => {
+              dispatch({
+                type: TotalsActions.SET_SUBTOTAL,
+                payload: { value }
+              });
             }}
             value={subtotal}
             name="subtotal"
+            id="subtotal"
           />
         </div>
       </div>
       <div className={cx("row")}>
         <div className={cx("col")}>
-          <label htmlFor="grandTotal">Grand Total</label>
+          <label htmlFor="grandTotal">
+            Grand Total{" "}
+            <abbr title="Sum of all items, plus tax and tip">[?]</abbr>
+          </label>
           <CurrencyInput
-            onChangeEvent={event => {
+            onChangeEvent={value => {
               dispatch({
                 type: TotalsActions.SET_GRAND_TOTAL,
-                payload: event
+                payload: { value }
               });
             }}
             value={grandtotal}
             name="grandTotal"
+            id="grandTotal"
           />
         </div>
       </div>

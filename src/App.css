@@ -41,9 +41,9 @@ body {
   width: 100%;
   margin-bottom: 16px;
 }
-.row:last-child {
+/* .row:last-child {
   margin-bottom: 0;
-}
+} */
 .row .col {
   flex-grow: 1;
   flex-basis: 0;
@@ -53,11 +53,11 @@ body {
 .row [class*=" col-"] {
   margin-right: 16px;
 }
-.row .col:last-child,
+/* .row .col:last-child,
 .row [class^="col-"]:last-child,
 .row [class*=" col-"]:last-child {
   margin-right: 0;
-}
+} */
 .row .col-1 {
   width: 8.333333333333332%;
 }
@@ -176,50 +176,27 @@ p {
 /*=============================
   Form
 =============================*/
-input[type="text"],
-input[type="password"],
-input[type="email"],
-input[type="search"],
-input[type="number"],
-input[type="file"],
-input[type="tel"],
-input[type="url"],
-select,
-textarea {
+input {
   height: 45px;
   width: 100%;
   margin-bottom: 16px;
   padding: 16px;
   font-size: 16px;
   background: #fff;
-  border: 1px solid #a7a7a7;
-  border-radius: 2px;
+  /* border: 1px solid #a7a7a7; */
+  border: 0;
+  border-radius: 45px;
   transition: all 0.2s ease;
 }
-input[type="text"]:hover,
-input[type="password"]:hover,
-input[type="email"]:hover,
-input[type="search"]:hover,
-input[type="number"]:hover,
-input[type="file"]:hover,
-input[type="tel"]:hover,
-input[type="url"]:hover,
-select:hover,
-textarea:hover {
+input:hover {
   border-color: #111;
 }
-input[type="text"]:focus,
-input[type="password"]:focus,
-input[type="email"]:focus,
-input[type="search"]:focus,
-input[type="number"]:focus,
-input[type="file"]:focus,
-input[type="tel"]:focus,
-input[type="url"]:focus,
-select:focus,
-textarea:focus {
+input:focus {
   outline: none;
   border-color: #0062ff;
+}
+label {
+  margin-right: 5px;
 }
 textarea {
   min-height: 70px;
@@ -238,8 +215,8 @@ button,
   color: #f5f5f5;
   font-size: 16px;
   background: #111;
-  border: 1px solid #111;
-  border-radius: 2px;
+  border: 0;
+  border-radius: 45px;
   transition: all 0.2s ease;
 }
 button:hover,
@@ -292,7 +269,7 @@ button.outline[disabled]:hover {
   Link
 =============================*/
 a {
-  color: #0062ff;
+  color: #067bc2;
   transition: all 0.2s ease;
 }
 a:hover {
@@ -300,83 +277,11 @@ a:hover {
   color: #111;
 }
 /*=============================
-  List
-=============================*/
-ul,
-ol {
-  margin-top: 0;
-  margin-bottom: 16px;
-  padding-left: 0;
-  list-style-position: inside;
-}
-ul li,
-ol li {
-  margin-bottom: 16px;
-}
-ul li:last-child,
-ol li:last-child {
-  margin-bottom: 0;
-}
-ul ul,
-ol ul,
-ul ol,
-ol ol {
-  margin-left: 16px;
-}
-/*=============================
   Image
 =============================*/
 img {
   margin-top: 0;
   margin-bottom: 16px;
-}
-/*=============================
-  Box
-=============================*/
-.box {
-  margin-bottom: 16px;
-  padding-top: 16px;
-  padding-right: 16px;
-  padding-left: 16px;
-  border: 1px solid #a7a7a7;
-  border-radius: 2px;
-}
-/*=============================
-  Navigation
-=============================*/
-.nav {
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 16px;
-  padding-bottom: 16px;
-}
-.nav .nav-item {
-  margin-right: 16px;
-}
-.nav .nav-item:last-child {
-  margin-right: 0;
-}
-/*=============================
-  Card
-=============================*/
-.card {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 16px;
-  /* border: 1px solid #a7a7a7; */
-  border-radius: 2px;
-}
-.card .card-content {
-  margin: 0;
-  padding: 16px;
-}
-.card .card-image {
-  display: block;
-  height: auto;
-  width: 100%;
 }
 /*=============================
   Code
@@ -400,16 +305,19 @@ code {
   font-family: "Consolas", "Monaco", "Menlo", monospace;
 }
 /*=============================
-  Divider
-=============================*/
-hr {
-  /* border-width: 0.5px;
-  border-color: #a7a7a7; */
-}
-/*=============================
   Utilities
 =============================*/
-.position-relative {
+
+.background-green {
+  background-color: #9bc53d;
+}
+.background-red {
+  background-color: #e51937;
+}
+.background-blue {
+  background-color: #70d6ff;
+}
+/* .position-relative {
   position: relative;
 }
 .position-absolute {
@@ -540,4 +448,4 @@ hr {
 }
 .background-green {
   background-color: #00b30f;
-}
+} */
