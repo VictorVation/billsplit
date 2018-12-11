@@ -1,7 +1,9 @@
 {
   "name": "billsplit",
   "version": "0.1.0",
+  "repository": "git@github.com:VictorVation/billsplit.git",
   "private": true,
+  "homepage": "https://www.victorszeto.com/billsplit",
   "dependencies": {
     "classnames": "^2.2.6",
     "react": "^16.7.0-alpha.2",
