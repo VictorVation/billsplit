@@ -13,6 +13,8 @@ export default function PersonView(props: IPersonViewProps) {
   const { idx, person } = props;
   const dispatch = useContext(DispatchContext);
 
+  const isMobile = navigator.userAgent.match("Mobi");
+
   const handleChangeEvent = (shareIndex, value) => {
     dispatch({
       type: PersonActions.CHANGE_SHARE_VALUE,
@@ -56,7 +58,7 @@ export default function PersonView(props: IPersonViewProps) {
               });
             }}
           >
-            Remove Item
+            {isMobile ? "Remove Item" : "-"}
           </button>
         )}
         {person.shares.length <= 8 && (
@@ -70,7 +72,7 @@ export default function PersonView(props: IPersonViewProps) {
               });
             }}
           >
-            Add Item
+            {isMobile ? "Add Item" : "+"}
           </button>
         )}
       </div>
