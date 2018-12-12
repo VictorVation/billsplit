@@ -4,9 +4,9 @@ import { default as cx } from "classnames";
 import { DispatchContext, TotalsState } from "../State";
 import { TotalsActions } from "../Actions";
 
-export default function TotalsView(props: TotalsState) {
+export default function TotalsView(props: { totals: TotalsState }) {
   const dispatch = useContext(DispatchContext);
-  const { grandtotal, subtotal } = props;
+  const { grandtotal, subtotal } = props.totals;
 
   return (
     <>

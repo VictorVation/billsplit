@@ -21,7 +21,10 @@ export default function PeopleView(props: IPeopleViewProps) {
       <div className={cx("row")} style={{ marginTop: "32px" }}>
         {props.people.length < 30 && (
           <button
-            onClick={() => dispatch({ type: PeopleActions.ADD_PERSON })}
+            onClick={event => {
+              event.preventDefault();
+              dispatch({ type: PeopleActions.ADD_PERSON });
+            }}
             className={cx("center", "col", "background-green")}
           >
             Add Person
@@ -29,7 +32,10 @@ export default function PeopleView(props: IPeopleViewProps) {
         )}
         {props.people.length > 2 && (
           <button
-            onClick={() => dispatch({ type: PeopleActions.REMOVE_PERSON })}
+            onClick={event => {
+              event.preventDefault();
+              dispatch({ type: PeopleActions.REMOVE_PERSON });
+            }}
             className={cx("center", "col", "background-red")}
             disabled={props.people.length === 2}
           >

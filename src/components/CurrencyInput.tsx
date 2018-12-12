@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { default as CurrencyInputImpl } from "react-currency-input";
+import mask from "../mask";
 
 interface ICurrencyInputProps {
   onChangeEvent: (number) => void;
@@ -8,20 +8,35 @@ interface ICurrencyInputProps {
   id?: string;
 }
 
+type CurrencyInputState = {
+  value: number;
+  maskedValue: string;
+};
+
 export default function CurrencyInput(props: ICurrencyInputProps) {
-  const { id, name, value } = props;
+  const { id, name, onChangeEvent, value } = props;
+  const [state, setState] = useState<CurrencyInputState>(mask(value));
+
+  const handleChange = event => {
+    event.preventDefault();
+    let { maskedValue, value } = mask(event.currentTarget.value);
+    setState({ maskedValue, value });
+    onChangeEvent(value);
+  };
 
   return (
     <div className="col">
-      <CurrencyInputImpl
-        selectAllOnFocus={true}
+      <input
+        // selectAllOnFocus={true}
+        key={name}
         className="col"
-        onChangeEvent={(_, __, floatVal) => props.onChangeEvent(floatVal)}
+        // onChangeEvent={(_, __, floatVal) => floatVal}
+        // onChange={event => onChangeEvent(event.currentTarget.value)}
+        onChange={handleChange}
         prefix={"$"}
-        value={value}
+        value={state.maskedValue}
         name={name ? name : undefined}
         id={id ? id : undefined}
-        max={3000}
       />
     </div>
   );

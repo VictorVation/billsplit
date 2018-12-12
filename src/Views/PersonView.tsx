@@ -22,7 +22,7 @@ export default function PersonView(props: IPersonViewProps) {
 
   return (
     <>
-      <label htmlFor={`person-${idx}`}>Person {idx}</label>
+      <label htmlFor={`person-${idx}`}>Person {idx + 1}</label>
       {person.shares.length > 1 && (
         <span style={{ fontSize: "12px" }}>
           {" · "}
@@ -48,27 +48,29 @@ export default function PersonView(props: IPersonViewProps) {
         {person.shares.length > 1 && (
           <button
             className="col-1"
-            onClick={() =>
+            onClick={e => {
+              e.preventDefault();
               dispatch({
                 type: PersonActions.DECREMENT_SHARES,
                 payload: { index: props.idx }
-              })
-            }
+              });
+            }}
           >
-            -
+            Remove Item
           </button>
         )}
         {person.shares.length <= 8 && (
           <button
             className="col-1"
-            onClick={() =>
+            onClick={e => {
+              e.preventDefault();
               dispatch({
                 type: PersonActions.INCREMENT_SHARES,
                 payload: { index: props.idx }
-              })
-            }
+              });
+            }}
           >
-            +
+            Add Item
           </button>
         )}
       </div>

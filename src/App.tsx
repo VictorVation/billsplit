@@ -1,9 +1,9 @@
 import React from "react";
 import { AppState, DispatchContextProvider } from "./State";
-import PeopleView from "./Views/PeopleView";
-import TotalsView from "./Views/TotalsView";
-import ResultView from "./Views/ResultView";
-import FooterView from "./Views/FooterView";
+import PeopleView from "./views/PeopleView";
+import TotalsView from "./views/TotalsView";
+import ResultView from "./views/ResultView";
+import FooterView from "./views/FooterView";
 import "./App.css";
 
 export default function App() {
@@ -14,7 +14,7 @@ export default function App() {
           <h1>billsplit</h1>
           <PeopleView people={state.people} />
           <hr />
-          <TotalsView {...state.totals} />
+          <TotalsView totals={state.totals} />
           <ResultView result={state.result} />
           <FooterView />
         </div>

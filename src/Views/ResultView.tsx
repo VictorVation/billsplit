@@ -25,7 +25,7 @@ export default function ResultView(props: IResultViewProps) {
 
           {props.result.splits.map((split, idx) => (
             <div className="row" key={idx}>
-              <div className="col">Person {idx}</div>
+              <div className="col">Person {idx + 1}</div>
               <div className="col">
                 {new Intl.NumberFormat("en-US", {
                   style: "currency",
