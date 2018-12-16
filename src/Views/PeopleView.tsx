@@ -1,6 +1,7 @@
 import { DispatchContext, PeopleState } from "../State";
 import React, { useContext } from "react";
 
+import InkButton from "../components/InkButton";
 import { PeopleActions } from "../Actions";
 import PersonView from "./PersonView";
 import { default as cx } from "classnames";
@@ -21,7 +22,7 @@ export default function PeopleView(props: IPeopleViewProps) {
       </div>
       <div className={cx("row")} style={{ marginTop: "32px" }}>
         {props.people.length < 30 && (
-          <button
+          <InkButton
             onClick={event => {
               event.preventDefault();
               dispatch({ type: PeopleActions.ADD_PERSON });
@@ -29,10 +30,10 @@ export default function PeopleView(props: IPeopleViewProps) {
             className={cx("center", "col", "background-green")}
           >
             Add Person
-          </button>
+          </InkButton>
         )}
         {props.people.length > 2 && (
-          <button
+          <InkButton
             onClick={event => {
               event.preventDefault();
               dispatch({ type: PeopleActions.REMOVE_PERSON });
@@ -41,7 +42,7 @@ export default function PeopleView(props: IPeopleViewProps) {
             disabled={props.people.length === 2}
           >
             Remove Person
-          </button>
+          </InkButton>
         )}
       </div>
     </>

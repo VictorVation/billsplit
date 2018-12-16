@@ -2,6 +2,7 @@ import { DispatchContext, Person } from "../State";
 import React, { useContext } from "react";
 
 import CurrencyInput from "../components/CurrencyInput";
+import InkButton from "../components/InkButton";
 import { PersonActions } from "../Actions";
 import { default as cx } from "classnames";
 
@@ -28,12 +29,10 @@ export default function PersonView(props: IPersonViewProps) {
       <label htmlFor={`person-${idx}`}>Person {idx + 1}</label>
       {person.shares.length > 1 && (
         <span style={{ fontSize: "12px" }}>
-          {" · "}
-          Total:{" "}
-          {new Intl.NumberFormat("en-US", {
+          {`· Total: ${new Intl.NumberFormat("en-US", {
             style: "currency",
             currency: "USD"
-          }).format(person.personTotal)}
+          }).format(person.personTotal)}`}
         </span>
       )}
       <div className={cx("row")}>
@@ -49,7 +48,7 @@ export default function PersonView(props: IPersonViewProps) {
           );
         })}
         {person.shares.length > 1 && (
-          <button
+          <InkButton
             className="col-1"
             onClick={e => {
               e.preventDefault();
@@ -60,10 +59,10 @@ export default function PersonView(props: IPersonViewProps) {
             }}
           >
             {isMobile ? "Remove Item" : "-"}
-          </button>
+          </InkButton>
         )}
         {person.shares.length <= 8 && (
-          <button
+          <InkButton
             className="col-1"
             onClick={e => {
               e.preventDefault();
@@ -74,7 +73,7 @@ export default function PersonView(props: IPersonViewProps) {
             }}
           >
             {isMobile ? "Add Item" : "+"}
-          </button>
+          </InkButton>
         )}
       </div>
     </>

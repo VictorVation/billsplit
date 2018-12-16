@@ -14,7 +14,9 @@ export default function TotalsView(props: { totals: TotalsState }) {
       <div className={cx("row")}>
         <div className={cx("col")}>
           <label htmlFor="subtotal">Subtotal</label>
-          <abbr title="Sum of the prices of all items">[?]</abbr>
+          <span style={{ fontSize: "12px" }}>
+            {"· "}Sum of the prices of all items
+          </span>
           <CurrencyInput
             onChangeEvent={value => {
               dispatch({
@@ -31,7 +33,9 @@ export default function TotalsView(props: { totals: TotalsState }) {
       <div className={cx("row")}>
         <div className={cx("col")}>
           <label htmlFor="grandTotal">Grand Total</label>
-          <abbr title="Sum of all items, plus tax and tip">[?]</abbr>
+          <span style={{ fontSize: "12px" }}>
+            {"· "}Entire amount paid, including tax and tip
+          </span>
           <CurrencyInput
             onChangeEvent={value => {
               dispatch({

@@ -1,6 +1,7 @@
 import { DispatchContext, ResultState } from "../State";
 import React, { useContext } from "react";
 
+import InkButton from "../components/InkButton";
 import { ResultActions } from "../Actions";
 import { default as cx } from "classnames";
 
@@ -13,12 +14,17 @@ export default function ResultView(props: IResultViewProps) {
 
   return (
     <>
-      <button
+      <InkButton
         className={cx("background-blue")}
-        onClick={() => dispatch({ type: ResultActions.CALCULATE_RESULT })}
+        onClick={() =>
+          dispatch({
+            type: ResultActions.CALCULATE_RESULT
+          })
+        }
+        type="submit"
       >
         Calculate
-      </button>
+      </InkButton>
       {props.result && (
         <>
           <hr />
