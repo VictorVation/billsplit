@@ -124,14 +124,18 @@ function resultReducer(state: AppState, action: Action): ResultState | null {
         });
         return state.result;
       }
-      if (personTotal != state.totals.subtotal) {
+      if (personTotal.toFixed(2) != state.totals.subtotal.toFixed(2)) {
+        debugger;
         Swal({
           text: "Items don't add up to subtotal!",
           confirmButtonColor: "#70d6ff"
         });
         return state.result;
       }
-      if (splits.reduce((acc, val) => acc + val) != state.totals.grandtotal) {
+      if (
+        splits.reduce((acc, val) => acc + val).toFixed(2) !=
+        state.totals.grandtotal.toFixed(2)
+      ) {
         Swal({
           text: "Grand Total incorrect!",
           confirmButtonColor: "#70d6ff"
