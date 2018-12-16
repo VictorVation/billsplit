@@ -1,8 +1,9 @@
+import { DispatchContext, Person } from "../State";
 import React, { useContext } from "react";
+
 import CurrencyInput from "../components/CurrencyInput";
 import { PersonActions } from "../Actions";
 import { default as cx } from "classnames";
-import { DispatchContext, Person } from "../State";
 
 interface IPersonViewProps {
   idx: number;

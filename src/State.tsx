@@ -1,7 +1,7 @@
-import React, { useReducer, createContext } from "react";
+import React, { createContext, useReducer } from "react";
+
 import { Action } from "./Actions";
 import reducer from "./Reducers";
-import { number } from "prop-types";
 
 export type Person = {
   shares: Array<number>;

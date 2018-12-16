@@ -1,10 +1,12 @@
-import React from "react";
-import { AppState, DispatchContextProvider } from "./State";
-import PeopleView from "./views/PeopleView";
-import TotalsView from "./views/TotalsView";
-import ResultView from "./views/ResultView";
-import FooterView from "./views/FooterView";
 import "./App.css";
+
+import { AppState, DispatchContextProvider } from "./State";
+
+import FooterView from "./views/FooterView";
+import PeopleView from "./views/PeopleView";
+import React from "react";
+import ResultView from "./views/ResultView";
+import TotalsView from "./views/TotalsView";
 
 export default function App() {
   return (

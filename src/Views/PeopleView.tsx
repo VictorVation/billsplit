@@ -1,7 +1,8 @@
+import { DispatchContext, PeopleState } from "../State";
 import React, { useContext } from "react";
+
 import { PeopleActions } from "../Actions";
 import PersonView from "./PersonView";
-import { DispatchContext, PeopleState } from "../State";
 import { default as cx } from "classnames";
 
 interface IPeopleViewProps {

@@ -1,11 +1,12 @@
-import { AppState, PeopleState, TotalsState, ResultState } from "./State";
 import {
+  Action,
   PeopleActions,
-  TotalsActions,
   PersonActions,
   ResultActions,
-  Action
+  TotalsActions
 } from "./Actions";
+import { AppState, PeopleState, ResultState, TotalsState } from "./State";
+
 import Swal from "sweetalert2";
 
 function peopleReducer(state: AppState, action: Action): PeopleState {

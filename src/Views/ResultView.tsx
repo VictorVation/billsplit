@@ -1,6 +1,7 @@
-import React, { useContext } from "react";
-import { ResultActions } from "../Actions";
 import { DispatchContext, ResultState } from "../State";
+import React, { useContext } from "react";
+
+import { ResultActions } from "../Actions";
 import { default as cx } from "classnames";
 
 interface IResultViewProps {

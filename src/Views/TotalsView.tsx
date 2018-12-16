@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
-import CurrencyInput from "../components/CurrencyInput";
-import { default as cx } from "classnames";
 import { DispatchContext, TotalsState } from "../State";
+import React, { useContext } from "react";
+
+import CurrencyInput from "../components/CurrencyInput";
 import { TotalsActions } from "../Actions";
+import { default as cx } from "classnames";
 
 export default function TotalsView(props: { totals: TotalsState }) {
   const dispatch = useContext(DispatchContext);
@@ -12,9 +13,8 @@ export default function TotalsView(props: { totals: TotalsState }) {
     <>
       <div className={cx("row")}>
         <div className={cx("col")}>
-          <label htmlFor="subtotal">
-            Subtotal <abbr title="Sum of the prices of all items">[?]</abbr>
-          </label>
+          <label htmlFor="subtotal">Subtotal</label>
+          <abbr title="Sum of the prices of all items">[?]</abbr>
           <CurrencyInput
             onChangeEvent={value => {
               dispatch({
@@ -30,10 +30,8 @@ export default function TotalsView(props: { totals: TotalsState }) {
       </div>
       <div className={cx("row")}>
         <div className={cx("col")}>
-          <label htmlFor="grandTotal">
-            Grand Total{" "}
-            <abbr title="Sum of all items, plus tax and tip">[?]</abbr>
-          </label>
+          <label htmlFor="grandTotal">Grand Total</label>
+          <abbr title="Sum of all items, plus tax and tip">[?]</abbr>
           <CurrencyInput
             onChangeEvent={value => {
               dispatch({
