@@ -385,10 +385,10 @@ code {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
+ }
 .border-black {
   border: 1px solid #111;
-}
+} 
 .border-gray {
   border: 1px solid #a7a7a7;
 }

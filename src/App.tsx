@@ -3,7 +3,7 @@ import "./App.css";
 import { AppState, DispatchContextProvider } from "./State";
 
 import FooterView from "./views/FooterView";
-import PeopleView from "./views/PeopleView";
+import ItemsView from "./views/ItemsView";
 import React from "react";
 import ResultView from "./views/ResultView";
 import TotalsView from "./views/TotalsView";
@@ -14,7 +14,7 @@ export default function App() {
       {(state: AppState) => (
         <div className="container center">
           <h1>billsplit</h1>
-          <PeopleView people={state.people} />
+          <ItemsView people={state.people} />
           <hr />
           <TotalsView totals={state.totals} />
           <ResultView result={state.result} />

@@ -102,12 +102,15 @@ function totalsReducer(state: AppState, action: Action): TotalsState {
 function resultReducer(state: AppState, action: Action): ResultState | null {
   switch (action.type) {
     case ResultActions.CALCULATE_RESULT: {
-      let personTotal = 0;
+      let totalOfAllItems = 0;
       const splits = state.people.map((person, idx) => {
-        personTotal += person.personTotal;
-        return (
-          (person.personTotal / state.totals.subtotal) * state.totals.grandtotal
-        );
+        const percentOfGrandTotal = person.personTotal / state.totals.subtotal;
+        totalOfAllItems += person.personTotal;
+        return {
+          personalTotal: person.personTotal,
+          percentOfGrandTotal,
+          amountOwed: percentOfGrandTotal * state.totals.grandtotal
+        };
       });
 
       if (state.totals.subtotal === 0) {
@@ -124,7 +127,7 @@ function resultReducer(state: AppState, action: Action): ResultState | null {
         });
         return state.result;
       }
-      if (personTotal.toFixed(2) != state.totals.subtotal.toFixed(2)) {
+      if (totalOfAllItems.toFixed(2) != state.totals.subtotal.toFixed(2)) {
         debugger;
         Swal({
           text: "Items don't add up to subtotal!",
@@ -133,7 +136,7 @@ function resultReducer(state: AppState, action: Action): ResultState | null {
         return state.result;
       }
       if (
-        splits.reduce((acc, val) => acc + val).toFixed(2) !=
+        splits.reduce((acc, split) => acc + split.amountOwed, 0).toFixed(2) !=
         state.totals.grandtotal.toFixed(2)
       ) {
         Swal({
@@ -143,8 +146,9 @@ function resultReducer(state: AppState, action: Action): ResultState | null {
         return state.result;
       }
       return {
-        splits,
-        tip: state.totals.grandtotal / state.totals.subtotal - 1
+        grandtotal: state.totals.grandtotal,
+        subtotal: state.totals.subtotal,
+        results: splits
       };
     }
     default: {
@@ -160,3 +164,4 @@ export default function reducer(state: AppState, action: Action): AppState {
     result: resultReducer(state, action)
   };
 }
+3;

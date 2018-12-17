@@ -10,11 +10,12 @@ interface IPeopleViewProps {
   people: PeopleState;
 }
 
-export default function PeopleView(props: IPeopleViewProps) {
+export default function ItemsView(props: IPeopleViewProps) {
   const dispatch = useContext(DispatchContext);
 
   return (
     <>
+      <h4>Items</h4>
       <div>
         {props.people.map((person, idx) => (
           <PersonView person={person} idx={idx} key={idx} />

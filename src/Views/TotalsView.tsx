@@ -11,6 +11,7 @@ export default function TotalsView(props: { totals: TotalsState }) {
 
   return (
     <>
+      <h4 className={cx("row")}>Totals</h4>
       <div className={cx("row")}>
         <div className={cx("col")}>
           <label htmlFor="subtotal">Subtotal</label>

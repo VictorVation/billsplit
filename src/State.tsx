@@ -15,9 +15,16 @@ export type TotalsState = {
   grandtotal: number;
 };
 
+export type SplitResult = {
+  amountOwed: number;
+  percentOfGrandTotal: number;
+  personalTotal: number;
+};
+
 export type ResultState = {
-  splits: Array<number>;
-  tip: number;
+  results: SplitResult[];
+  subtotal: number;
+  grandtotal: number;
 };
 
 export type AppState = {
