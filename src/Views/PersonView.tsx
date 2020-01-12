@@ -26,9 +26,7 @@ export default function PersonView(props: IPersonViewProps) {
 
   return (
     <>
-      <label contentEditable htmlFor={`person-${idx}`}>
-        Person {idx + 1}
-      </label>
+      <span contentEditable>Person {idx + 1}</span>
       {person.shares.length > 1 && (
         <span style={{ fontSize: "12px" }}>
           {`· Total: ${new Intl.NumberFormat("en-US", {

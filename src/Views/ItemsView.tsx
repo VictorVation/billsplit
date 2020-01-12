@@ -21,6 +21,18 @@ export default function ItemsView(props: IPeopleViewProps) {
           <PersonView person={person} idx={idx} key={idx} />
         ))}
       </div>
+      <div>
+        <strong>Running Total:</strong> $
+        {props.people.reduce(
+          (total, person) =>
+            total +
+            person.shares.reduce(
+              (personalTotal, share) => personalTotal + share,
+              0
+            ),
+          0
+        )}
+      </div>
       <div className={cx("row")} style={{ marginTop: "32px" }}>
         {props.people.length < 30 && (
           <InkButton

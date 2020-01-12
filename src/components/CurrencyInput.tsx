@@ -28,11 +28,8 @@ export default function CurrencyInput(props: ICurrencyInputProps) {
   return (
     <div className="col">
       <input
-        // selectAllOnFocus={true}
         key={name}
         className="col"
-        // onChangeEvent={(_, __, floatVal) => floatVal}
-        // onChange={event => onChangeEvent(event.currentTarget.value)}
         onChange={handleChange}
         prefix={"$"}
         value={state.maskedValue}
